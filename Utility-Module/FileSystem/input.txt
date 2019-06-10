@@ -1,0 +1,6 @@
+Node.js File System (FS)
+In Node.js, file I/O is provided by simple wrappers around standard POSIX functions. Node File System (fs) module can be imported using following syntax:
+
+Syntax:
+
+var fs = require("fs")  
