@@ -30,8 +30,6 @@ let employeeSchema = new mongoose.Schema({
     updated_at: {type: Date, default: null}
 });
 
-const Employee = mongoose.model('employee', employeeSchema);
-
 employeeSchema.pre('save', function(next) {
     // get the current date
     var currentDate = new Date();
@@ -42,5 +40,8 @@ employeeSchema.pre('save', function(next) {
     console.log(this);
     next();
 });
+
+
+const Employee = mongoose.model('employee', employeeSchema);
 
 module.exports = Employee;
