@@ -13,11 +13,7 @@ mongoose.connect(process.env.DB_CONNECTION_URL, {dbName: process.env.DATABASE_NA
         title: {type: String, required: true},
         description: String,
         date: {type: Date, required: true}
-    }, {
-        versionKey: false // You should be aware of the outcome after set to false
     });
-
-
 
     var Task = mongoose.model('tasks', TaskSchema);
     var task = new Task({
