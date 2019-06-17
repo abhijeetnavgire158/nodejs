@@ -2,21 +2,25 @@ const fs = require('fs');
 const dotenv = require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
-const publicKey = fs.readFileSync('../config/keys/public.key');
-const privateKey = fs.readFileSync('../config/keys/private.key');
+const secretKey = process.env.SECRET_KEY;
 
 module.exports = {
-    sign: (payload, options) => {
+    genrateToken: async (payload, options) => {
          // Token signing options
-        var signOptions = {
-            issuer: options.issuer,
-            subject: options.subject,
-            audience: options.audience,
+        var signOptions = {         
             expiresIn: "30d",    // 30 days validity
-            algorithm: "RS256"
+            algorithm: ["RS256"]
         };
+        console.log('ww');
+        console.log(secretKey);
+        let token = '';
+        try {
+            token = await jwt.sign(payload, secretKey);
+        } catch (error) {
+            console.log('Error');
+        }
 
-        return jwt.sign(payload, privateKey, signOptions);
+        return token;
     },
     verify: (token, options) => {
         var verifyOptions = {
@@ -28,7 +32,7 @@ module.exports = {
         };
 
         try {
-            return jwt.verify(token, publicKey, verifyOptions);
+            return jwt.verify(token, secretKey, verifyOptions);
         } catch (error) {
             return false;
         }
