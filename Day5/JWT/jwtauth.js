@@ -10,7 +10,7 @@ var payload = {
 };
 
 var privateKEY = fs.readFileSync('./private.key');
-var publicKEY = fs.readFileSync('public.key');
+var publicKEY = fs.readFileSync('./public.key');
 
 var i  = 'Cuelogic';          // Issuer 
 var s  = 'cuelogic@mailinator.com';        // Subject 
