@@ -25,7 +25,7 @@ const init = async () => {
         validate: validate,
         verifyOptions: { algorithms: [ 'HS256' ] }
     });
-    //server.auth.default('token');
+    server.auth.default('token');
 
     let userRoutes = require('./routes/user.route.js');
     server.route(userRoutes);

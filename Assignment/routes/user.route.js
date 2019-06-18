@@ -1,6 +1,6 @@
 const Joi = require('@hapi/joi');
 const UserController = require('../controllers/user.controller.js');
-const authenticateUserSchema = require('../schemas/authenticateUser.schema.js');
+
 module.exports = [
     {
         method: 'POST',
@@ -21,9 +21,24 @@ module.exports = [
         handler: UserController.list
     },
     {
+        method: 'GET',
+        path: '/api/users/{id}',
+        handler: UserController.show
+    },
+    {
         method: 'POST',
         path: '/api/login',
         config: { auth: false },
         handler: UserController.login
+    },
+    {
+        method: ['PUT', 'PATCH'],
+        path: '/api/users/{id}',
+        handler: UserController.update
+    },
+    {
+        method: 'GET',
+        path: '/api/inactiveusers',
+        handler: UserController.inactiveUsers
     }
 ];
